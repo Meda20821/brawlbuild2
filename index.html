@@ -11,6 +11,7 @@
     
     <label for="modalita">Seleziona la modalità:</label>
     <select id="modalita" onchange="caricaMappe()">
+        <option value="">-- Seleziona una modalità --</option>
         <option value="KO">KO</option>
         <option value="Rapina">Rapina</option>
         <option value="Arraffagemme">Arraffagemme</option>
@@ -19,17 +20,22 @@
     </select>
 
     <label for="mappa">Seleziona la mappa:</label>
-    <select id="mappa"></select>
+    <select id="mappa">
+        <option value="">-- Seleziona una mappa --</option>
+    </select>
 
     <h2>Squadra 1</h2>
-    <select class="brawler-select" onchange="suggerisciCounter(0)"></select>
-    <select class="brawler-select" onchange="suggerisciCounter(1)"></select>
-    <select class="brawler-select" onchange="suggerisciCounter(2)"></select>
+    <label for="brawler1">Brawler 1:</label>
+    <select id="brawler1" class="brawler-select" onchange="aggiornaCounter()"></select>
+    <label for="brawler2">Brawler 2:</label>
+    <select id="brawler2" class="brawler-select" onchange="aggiornaCounter()"></select>
+    <label for="brawler3">Brawler 3:</label>
+    <select id="brawler3" class="brawler-select" onchange="aggiornaCounter()"></select>
 
     <h2>Squadra 2 (Counter suggeriti)</h2>
-    <select class="counter-select"></select>
-    <select class="counter-select"></select>
-    <select class="counter-select"></select>
+    <p id="counter1"></p>
+    <p id="counter2"></p>
+    <p id="counter3"></p>
 
     <script src="script.js"></script>
 </body>
