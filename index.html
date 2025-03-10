@@ -4,129 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brawl Stars Team Builder</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f4f4f4;
-        }
-        .container {
-            max-width: 600px;
-            margin: 20px auto;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-        select {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            font-size: 16px;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <h1>Brawl Stars Team Builder</h1>
+    
+    <label for="modalita">Seleziona la modalità:</label>
+    <select id="modalita" onchange="caricaMappe()">
+        <option value="KO">KO</option>
+        <option value="Rapina">Rapina</option>
+        <option value="Arraffagemme">Arraffagemme</option>
+        <option value="Footbrawl">Footbrawl</option>
+        <option value="Hockeybrawl">Hockeybrawl</option>
+    </select>
 
-    <div class="container">
-        <h2>Seleziona la Modalità</h2>
-        <select id="modeSelect" onchange="updateMaps()">
-            <option value="ko">KO</option>
-            <option value="rapina">Rapina</option>
-            <option value="arraffagemme">Arraffagemme</option>
-            <option value="footbrawl">Footbrawl</option>
-            <option value="hockeybrawl">Hockeybrawl</option>
-        </select>
+    <label for="mappa">Seleziona la mappa:</label>
+    <select id="mappa"></select>
 
-        <h2>Seleziona la Mappa</h2>
-        <select id="mapSelect"></select>
+    <h2>Squadra 1</h2>
+    <select class="brawler-select" onchange="suggerisciCounter(0)"></select>
+    <select class="brawler-select" onchange="suggerisciCounter(1)"></select>
+    <select class="brawler-select" onchange="suggerisciCounter(2)"></select>
 
-        <h2>Squadra 1</h2>
-        <select id="team1_brawler1" onchange="suggestCounter('team1_brawler1', 'team2_counter1')"></select>
-        <p>Counter: <span id="team2_counter1">-</span></p>
-        <select id="team1_brawler2" onchange="suggestCounter('team1_brawler2', 'team2_counter2')"></select>
-        <p>Counter: <span id="team2_counter2">-</span></p>
-        <select id="team1_brawler3" onchange="suggestCounter('team1_brawler3', 'team2_counter3')"></select>
-        <p>Counter: <span id="team2_counter3">-</span></p>
+    <h2>Squadra 2 (Counter suggeriti)</h2>
+    <select class="counter-select"></select>
+    <select class="counter-select"></select>
+    <select class="counter-select"></select>
 
-        <h2>Squadra 2</h2>
-        <select id="team2_brawler1" onchange="suggestCounter('team2_brawler1', 'team1_counter1')"></select>
-        <p>Counter: <span id="team1_counter1">-</span></p>
-        <select id="team2_brawler2" onchange="suggestCounter('team2_brawler2', 'team1_counter2')"></select>
-        <p>Counter: <span id="team1_counter2">-</span></p>
-        <select id="team2_brawler3" onchange="suggestCounter('team2_brawler3', 'team1_counter3')"></select>
-        <p>Counter: <span id="team1_counter3">-</span></p>
-    </div>
-
-    <script>
-        const maps = {
-            ko: ["Mappa KO 1", "Mappa KO 2", "Mappa KO 3"],
-            rapina: ["Mappa Rapina 1", "Mappa Rapina 2", "Mappa Rapina 3"],
-            arraffagemme: ["Mappa Arraffagemme 1", "Mappa Arraffagemme 2", "Mappa Arraffagemme 3"],
-            footbrawl: ["Mappa Footbrawl 1", "Mappa Footbrawl 2", "Mappa Footbrawl 3"],
-            hockeybrawl: ["Mappa Hockeybrawl 1", "Mappa Hockeybrawl 2", "Mappa Hockeybrawl 3"]
-        };
-
-        function updateMaps() {
-            const mode = document.getElementById("modeSelect").value;
-            const mapSelect = document.getElementById("mapSelect");
-            mapSelect.innerHTML = "";
-            maps[mode].forEach(map => {
-                let option = document.createElement("option");
-                option.value = map;
-                option.textContent = map;
-                mapSelect.appendChild(option);
-            });
-        }
-
-        const brawlers = [
-            "Shelly", "Colt", "Bull", "Brock", "Rico", "Spike", "Barley", "Dynamike",
-            "Bo", "Crow", "Piper", "Pam", "Frank", "Mortis", "Tara", "Darryl", "Penny",
-            "Carl", "Gene", "Leon", "Rosa", "Bibi", "Tick", "8-Bit", "Sandy", "Bea",
-            "Emz", "Mr. P", "Max", "Jacky", "Gale", "Nani", "Sprout", "Surge", "Colette",
-            "Lou", "Byron", "Edgar", "Ruffs", "Stu", "Belle", "Squeak", "Buzz", "Griff",
-            "Ash", "Lola", "Fang", "Eve", "Janet", "Bonnie", "Otis", "Sam", "Gus",
-            "Buster", "Chester", "Gray", "Mandy", "R-T", "Willow", "Maisie", "Hank",
-            "Pearl", "Chuck", "Doug", "Cordelius", "Leonard", "Amber", "Louie", "Draco",
-            "Franklin", "Veronica", "Magnus", "Jax", "Holly", "Brutus", "Eliza", "Felix",
-            "Zane", "Oriana", "Gideon", "Helios", "Selene", "Nova"
-        ];
-
-        const counters = {
-            Shelly: "Crow", Colt: "Spike", Bull: "Frank", Brock: "Leon", Rico: "Darryl",
-            Spike: "Piper", Barley: "Mortis", Dynamike: "Edgar", Bo: "Belle", Crow: "Buster",
-            Piper: "Gene", Pam: "Byron", Frank: "Leon", Mortis: "Shelly", Tara: "8-Bit",
-            Darryl: "Gale", Penny: "Max", Carl: "Sandy", Gene: "Sprout", Leon: "Piper",
-            Rosa: "Brock", Bibi: "Edgar", Tick: "Griff", "8-Bit": "Surge", Sandy: "Buster",
-            Bea: "Mortis", Emz: "Piper", "Mr. P": "Surge", Max: "Gale", Jacky: "Spike",
-            Gale: "Edgar", Nani: "Sprout", Sprout: "Dynamike", Surge: "Belle",
-            Colette: "Buster", Lou: "Byron", Byron: "Max", Edgar: "Shelly",
-            Ruffs: "Bibi", Stu: "Piper", Belle: "Crow", Squeak: "Spike", Buzz: "Brock",
-            Griff: "Dynamike", Ash: "Tara", Lola: "Bibi", Fang: "Gale", Eve: "Byron",
-            Janet: "Colt", Bonnie: "Leon", Otis: "Mortis", Sam: "Bibi", Gus: "Spike"
-        };
-
-        function populateBrawlers(selectId) {
-            const select = document.getElementById(selectId);
-            brawlers.forEach(brawler => {
-                let option = document.createElement("option");
-                option.value = brawler;
-                option.textContent = brawler;
-                select.appendChild(option);
-            });
-        }
-
-        function suggestCounter(brawlerSelectId, counterDisplayId) {
-            const selectedBrawler = document.getElementById(brawlerSelectId).value;
-            document.getElementById(counterDisplayId).textContent = counters[selectedBrawler] || "Nessun counter trovato";
-        }
-
-        document.addEventListener("DOMContentLoaded", () => {
-            updateMaps();
-            ["team1_brawler1", "team1_brawler2", "team1_brawler3", "team2_brawler1", "team2_brawler2", "team2_brawler3"]
-                .forEach(id => populateBrawlers(id));
-        });
-    </script>
-
+    <script src="script.js"></script>
 </body>
 </html>
