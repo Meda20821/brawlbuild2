@@ -277,3 +277,100 @@
     </script>
 </body>
 </html>
+git add .
+git commit -m "Miglioramenti funzionali e ottimizzazione tecnica"
+git push origin main  # O il branch corretto (es. "master" o "dev")
+// Caricamento dinamico dei dati dei Brawler e delle mappe
+async function loadGameData() {
+    const response = await fetch('brawlers.json'); // File JSON con dati Brawler
+    const brawlers = await response.json();
+    populateBrawlerDropdowns(brawlers);
+    
+    const mapResponse = await fetch('maps.json'); // File JSON con mappe e modalità
+    const maps = await mapResponse.json();
+    populateMapDropdown(maps);
+}
+
+document.addEventListener("DOMContentLoaded", loadGameData);
+
+// Popolamento dei menu a tendina con i Brawler e icone
+function populateBrawlerDropdowns(brawlers) {
+    const dropdowns = document.querySelectorAll('.brawler-select');
+    dropdowns.forEach(select => {
+        brawlers.forEach(brawler => {
+            let option = document.createElement("option");
+            option.value = brawler.name;
+            option.innerHTML = `<img src='${brawler.icon}' class='brawler-icon'> ${brawler.name}`;
+            select.appendChild(option);
+        });
+    });
+}
+
+// Popolamento delle mappe in base alla modalità
+function populateMapDropdown(maps) {
+    const modeSelect = document.getElementById("mode-select");
+    const mapSelect = document.getElementById("map-select");
+
+    modeSelect.addEventListener("change", function () {
+        mapSelect.innerHTML = "";
+        let selectedMode = modeSelect.value;
+        let filteredMaps = maps.filter(map => map.mode === selectedMode);
+        
+        filteredMaps.forEach(map => {
+            let option = document.createElement("option");
+            option.value = map.name;
+            option.textContent = map.name;
+            mapSelect.appendChild(option);
+        });
+    });
+}
+
+// Gestione della selezione e dei counter
+function suggestCounters() {
+    const selectedBrawlers = [...document.querySelectorAll('.brawler-select')].map(select => select.value);
+    const counterDiv = document.getElementById("counters");
+    counterDiv.innerHTML = "";
+
+    selectedBrawlers.forEach(brawler => {
+        if (brawler) {
+            fetch(`brawler_data/${brawler}.json`) // File JSON individuale per ogni Brawler
+                .then(response => response.json())
+                .then(data => {
+                    let counterList = data.counters.map(counter => `<li>${counter}</li>`).join('');
+                    let counterHTML = `<div><strong>${brawler}:</strong><ul>${counterList}</ul></div>`;
+                    counterDiv.innerHTML += counterHTML;
+                });
+        }
+    });
+}
+
+document.querySelectorAll('.brawler-select').forEach(select => {
+    select.addEventListener("change", suggestCounters);
+});
+
+// Salvataggio delle squadre selezionate
+function saveTeamSelection() {
+    const team1 = [...document.querySelectorAll('#team1 .brawler-select')].map(select => select.value);
+    const team2 = [...document.querySelectorAll('#team2 .brawler-select')].map(select => select.value);
+    
+    localStorage.setItem("team1", JSON.stringify(team1));
+    localStorage.setItem("team2", JSON.stringify(team2));
+}
+
+document.getElementById("save-teams").addEventListener("click", saveTeamSelection);
+
+// Caricamento delle squadre salvate
+function loadSavedTeams() {
+    const team1 = JSON.parse(localStorage.getItem("team1")) || [];
+    const team2 = JSON.parse(localStorage.getItem("team2")) || [];
+    
+    document.querySelectorAll('#team1 .brawler-select').forEach((select, index) => {
+        if (team1[index]) select.value = team1[index];
+    });
+    
+    document.querySelectorAll('#team2 .brawler-select').forEach((select, index) => {
+        if (team2[index]) select.value = team2[index];
+    });
+}
+
+document.addEventListener("DOMContentLoaded", loadSavedTeams);
