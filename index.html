@@ -40,91 +40,103 @@
     <script>
         const brawlers = [
             { name: "8-Bit", category: "Supporto", position: "Lane" },
-            { name: "Amber", category: "Marksman", position: "Lane" },
-            { name: "Angelo", category: "Assassini", position: "Mid" },
+            { name: "Amber", category: "Assassini", position: "Mid" },
+            { name: "Angelo", category: "Tank", position: "Lane" },
             { name: "Ash", category: "Tank", position: "Lane" },
             { name: "Barley", category: "Supporto", position: "Lane" },
-            { name: "Bea", category: "Marksman", position: "Lane" },
-            { name: "Belle", category: "Marksman", position: "Lane" },
+            { name: "Bea", category: "Cecchini", position: "Lane" },
+            { name: "Belle", category: "Cecchini", position: "Lane" },
             { name: "Bibi", category: "Tank", position: "Lane" },
-            { name: "Bo", category: "Marksman", position: "Lane" },
+            { name: "Bo", category: "Cecchini", position: "Lane" },
             { name: "Bonnie", category: "Assassini", position: "Mid" },
-            { name: "Brock", category: "Marksman", position: "Lane" },
+            { name: "Brock", category: "Cecchini", position: "Lane" },
             { name: "Bull", category: "Tank", position: "Lane" },
-            { name: "Buzz", category: "Assassini", position: "Lane" },
-            { name: "Byron", category: "Supporto", position: "Mid" },
+            { name: "Buster", category: "Tank", position: "Lane" },
+            { name: "Buzz", category: "Assassini", position: "Mid" },
+            { name: "Byron", category: "Supporto", position: "Lane" },
             { name: "Carl", category: "Tank", position: "Lane" },
+            { name: "Charlie", category: "Cecchini", position: "Lane" },
             { name: "Chester", category: "Assassini", position: "Mid" },
-            { name: "Colette", category: "Assassini", position: "Lane" },
-            { name: "Crow", category: "Assassini", position: "Lane" },
+            { name: "Chuck", category: "Cecchini", position: "Lane" },
+            { name: "Colette", category: "Cecchini", position: "Lane" },
+            { name: "Colt", category: "Cecchini", position: "Lane" },
+            { name: "Crow", category: "Assassini", position: "Mid" },
             { name: "Darryl", category: "Tank", position: "Lane" },
             { name: "Edgar", category: "Assassini", position: "Mid" },
-            { name: "Emz", category: "Marksman", position: "Lane" },
+            { name: "El Primo", category: "Tank", position: "Lane" },
+            { name: "Emz", category: "Supporto", position: "Lane" },
+            { name: "Eve", category: "Cecchini", position: "Lane" },
             { name: "Fang", category: "Assassini", position: "Mid" },
             { name: "Frank", category: "Tank", position: "Lane" },
             { name: "Gale", category: "Supporto", position: "Mid" },
-            { name: "Gene", category: "Supporto", position: "Mid" },
-            { name: "Griff", category: "Marksman", position: "Lane" },
-            { name: "Grom", category: "Marksman", position: "Lane" },
+            { name: "Gene", category: "Supporto", position: "Lane" },
+            { name: "Griff", category: "Cecchini", position: "Lane" },
+            { name: "Grom", category: "Cecchini", position: "Lane" },
+            { name: "Gus", category: "Supporto", position: "Lane" },
+            { name: "Jacky", category: "Tank", position: "Lane" },
+            { name: "Janet", category: "Cecchini", position: "Lane" },
+            { name: "Jessie", category: "Supporto", position: "Lane" },
+            { name: "Leon", category: "Assassini", position: "Mid" },
+            { name: "Lola", category: "Cecchini", position: "Lane" },
+            { name: "Lou", category: "Supporto", position: "Lane" },
             { name: "Max", category: "Assassini", position: "Mid" },
+            { name: "Meg", category: "Tank", position: "Lane" },
             { name: "Mortis", category: "Assassini", position: "Mid" },
+            { name: "Mr. P", category: "Supporto", position: "Lane" },
+            { name: "Nani", category: "Cecchini", position: "Lane" },
             { name: "Nita", category: "Tank", position: "Lane" },
-            { name: "Penny", category: "Marksman", position: "Lane" },
-            { name: "Piper", category: "Marksman", position: "Lane" },
-            { name: "Rico", category: "Marksman", position: "Lane" },
+            { name: "Otis", category: "Supporto", position: "Lane" },
+            { name: "Pam", category: "Supporto", position: "Lane" },
+            { name: "Penny", category: "Cecchini", position: "Lane" },
+            { name: "Piper", category: "Cecchini", position: "Lane" },
+            { name: "Rico", category: "Cecchini", position: "Lane" },
             { name: "Rosa", category: "Tank", position: "Lane" },
+            { name: "Ruffs", category: "Supporto", position: "Lane" },
             { name: "Sam", category: "Tank", position: "Lane" },
-            { name: "Shelly", category: "Marksman", position: "Lane" },
-            { name: "Spike", category: "Marksman", position: "Lane" },
-            { name: "Surge", category: "Assassini", position: "Mid" },
-            { name: "Tara", category: "Marksman", position: "Lane" },
+            { name: "Sandy", category: "Supporto", position: "Lane" },
+            { name: "Shelly", category: "Tank", position: "Lane" },
+            { name: "Spike", category: "Cecchini", position: "Lane" },
+            { name: "Sprout", category: "Supporto", position: "Lane" },
+            { name: "Stu", category: "Assassini", position: "Mid" },
+            { name: "Surge", category: "Cecchini", position: "Lane" },
+            { name: "Tara", category: "Supporto", position: "Lane" },
+            { name: "Tick", category: "Cecchini", position: "Lane" },
             { name: "Willow", category: "Assassini", position: "Mid" }
         ];
 
         const counter = {
-            "8-Bit": ["Max", "Piper"],
-            "Amber": ["Rico", "Shelly"],
-            "Angelo": ["Crow", "Gene"],
-            "Ash": ["Spike", "Colt"],
-            "Barley": ["Mortis", "Bibi"],
-            "Bea": ["Bull", "Rosa"],
-            "Belle": ["Colt", "Edgar"],
-            "Bibi": ["Edgar", "Max"],
-            "Bo": ["Colette", "Gene"],
-            "Bonnie": ["Piper", "Brock"],
-            "Brock": ["Leon", "Rico"],
-            "Bull": ["Bea", "Edgar"],
-            "Buzz": ["Max", "Gene"],
-            "Byron": ["Mortis", "Frank"],
-            "Carl": ["Shelly", "Tara"],
-            "Chester": ["Gale", "Ruffs"],
-            "Colette": ["Surge", "Brock"],
-            "Crow": ["Leon", "Piper"],
-            "Darryl": ["Piper", "Sprout"],
-            "Edgar": ["Bo", "Shelly"],
-            "Emz": ["Dynamike", "Barley"],
-            "Fang": ["Shelly", "Frank"],
-            "Frank": ["Belle", "Piper"],
-            "Gale": ["Edgar", "Shelly"],
-            "Gene": ["Otis", "Bibi"],
-            "Griff": ["Bo", "Brock"],
-            "Grom": ["Rico", "Piper"],
-            "Max": ["Crow", "Mortis"],
-            "Mortis": ["Bull", "Edgar"],
-            "Nita": ["Colt", "Max"],
-            "Penny": ["Surge", "Max"],
-            "Piper": ["Max", "Bibi"],
-            "Rico": ["Edgar", "Colette"],
-            "Rosa": ["Colt", "Bea"],
-            "Sam": ["Belle", "Edgar"],
-            "Shelly": ["Bull", "Mortis"],
-            "Spike": ["Mortis", "Piper"],
-            "Surge": ["Leon", "Bibi"],
-            "Tara": ["Gale", "Edgar"],
-            "Willow": ["Mortis", "Piper"]
+            "8-Bit": { "green": ["Max", "Piper"], "orange": ["Brock", "Gene"] },
+            "Amber": { "green": ["Rico", "Shelly"], "orange": ["Bull", "Frank"] },
+            "Angelo": { "green": ["Crow", "Gene"], "orange": ["Edgar", "Max"] },
+            "Barley": { "green": ["Piper", "Frank"], "orange": ["Edgar", "Shelly"] },
+            "Bea": { "green": ["Bull", "Rosa"], "orange": ["Max", "Gene"] },
+            "Belle": { "green": ["Edgar", "Max"], "orange": ["Bibi", "Piper"] },
+            "Bibi": { "green": ["Edgar", "Max"], "orange": ["Shelly", "Piper"] },
+            "Bo": { "green": ["Colette", "Gene"], "orange": ["Brock", "Max"] },
+            "Brock": { "green": ["Leon", "Rico"], "orange": ["Piper", "Max"] },
+            "Bull": { "green": ["Bea", "Edgar"], "orange": ["Max", "Piper"] },
+            "Buster": { "green": ["Max", "Otis"], "orange": ["Gene", "Piper"] },
+            "Buzz": { "green": ["Max", "Gene"], "orange": ["Edgar", "Brock"] },
+            "Carl": { "green": ["Shelly", "Tara"], "orange": ["Bull", "Gene"] },
+            "Crow": { "green": ["Leon", "Piper"], "orange": ["Gene", "Max"] },
+            "Edgar": { "green": ["Max", "Piper"], "orange": ["Bibi", "Shelly"] },
+            "Frank": { "green": ["Piper", "Max"], "orange": ["Gene", "Rico"] },
+            "Gene": { "green": ["Piper", "Max"], "orange": ["Edgar", "Bibi"] },
+            "Leon": { "green": ["Piper", "Shelly"], "orange": ["Max", "Rico"] },
+            "Max": { "green": ["Crow", "Mortis"], "orange": ["Piper", "Bibi"] },
+            "Piper": { "green": ["Max", "Bibi"], "orange": ["Gene", "Rico"] },
+            "Rico": { "green": ["Piper", "Max"], "orange": ["Bibi", "Edgar"] },
+            "Shelly": { "green": ["Bull", "Mortis"], "orange": ["Piper", "Rico"] }
         };
 
-        // Popolamento del selettore dei brawler
+        const mappe = {
+            "KO": ["Flaring Phoenix", "Goldarm Gulch", "Out in the Open"],
+            "Rapina": ["Bridge Too Far", "Hot Potato", "Kaboom Canyon"],
+            "Arraffagemme": ["Hard Rock Mine", "Last Stop", "Undermine"],
+            "Footbrawl": ["Center Stage", "Pinball Dreams", "Triple Dribble"],
+            "Hockeybrawl": ["Dueling Beetles", "Open Business", "Parallel Plays"]
+        };
+
         function popolaSelect() {
             let selectElements = document.querySelectorAll(".brawler-select");
             selectElements.forEach(select => {
@@ -132,20 +144,23 @@
                 brawlers.forEach(brawler => {
                     let option = document.createElement("option");
                     option.value = brawler.name;
-                    option.textContent = brawler.name;
+                    option.textContent = `${brawler.name} (${brawler.category}, ${brawler.position})`;
                     select.appendChild(option);
                 });
             });
         }
 
-        // Funzione per suggerire i counter
         function suggerisciCounter(num) {
             let brawlerSelezionato = document.getElementById(`brawler${num}`).value;
-            let counterSuggeriti = counter[brawlerSelezionato] || ["Nessun counter definito"];
-            document.getElementById(`counter${num}`).textContent = `Counter ${num}: ${counterSuggeriti.join(", ")}`;
+            let counterSuggeriti = counter[brawlerSelezionato] || { "green": [], "orange": [] };
+            let counterElement = document.getElementById(`counter${num}`);
+
+            // Visualizza i counter con i colori
+            let counterHTML = `<strong>Ottimi counter:</strong> ${counterSuggeriti.green.map(c => `<span style="color:green">${c}</span>`).join(", ")}<br>`;
+            counterHTML += `<strong>Counter meno efficaci:</strong> ${counterSuggeriti.orange.map(c => `<span style="color:orange">${c}</span>`).join(", ")}`;
+            counterElement.innerHTML = counterHTML;
         }
 
-        // Caricamento delle mappe in base alla modalità
         function caricaMappe() {
             let modalita = document.getElementById("modalita").value;
             let mappaSelect = document.getElementById("mappa");
