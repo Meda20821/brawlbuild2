@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -40,100 +39,94 @@
 
     <script>
         const brawlers = [
-            "8-Bit", "Amber", "Angelo", "Ash", "Barley", "Bea", "Belle", "Berry", "Bibi", "Bo", "Bonnie", "Brock", "Bull", "Buster", "Buzz", "Byron", "Carl", "Charlie", "Chester", "Chuck", "Clancy", "Colette", "Colt", "Cordelius", "Crow", "Darryl", "Doug", "Draco", "Dynamike", "Edgar", "El Primo", "Emz", "Eve", "Fang", "Finx", "Frank", "Gale", "Gene", "Gray", "Griff", "Grom", "Gus", "Hank", "Jacky", "Janet", "Jessie", "Juju", "Kenji", "Kit", "Larry & Lawrie", "Leon", "Lily", "Lola", "Lou", "Lumi", "Maisie", "Mandy", "Max", "Meeple", "Meg", "Melodie", "Mico", "Moe", "Mortis", "Mr. P", "Nani", "Nita", "Ollie", "Otis", "Pam", "Pearl", "Penny", "Piper", "Poco", "R-T", "Rico", "Rosa", "Ruffs", "Sam", "Sandy", "Shade", "Shelly", "Spike", "Sprout", "Squeak", "Stu", "Surge", "Tara", "Tick", "Willow"
+            { name: "8-Bit", category: "Support", position: "Lane" },
+            { name: "Amber", category: "Assassin", position: "Mid" },
+            { name: "Angelo", category: "Tank", position: "Lane" },
+            { name: "Ash", category: "Tank", position: "Lane" },
+            { name: "Barley", category: "Support", position: "Lane" },
+            { name: "Bea", category: "Marksman", position: "Lane" },
+            { name: "Belle", category: "Marksman", position: "Lane" },
+            { name: "Bibi", category: "Tank", position: "Lane" },
+            { name: "Bo", category: "Marksman", position: "Lane" },
+            { name: "Bonnie", category: "Assassin", position: "Mid" },
+            { name: "Brock", category: "Marksman", position: "Lane" },
+            { name: "Bull", category: "Tank", position: "Lane" },
+            { name: "Buster", category: "Tank", position: "Lane" },
+            { name: "Buzz", category: "Assassin", position: "Mid" },
+            { name: "Byron", category: "Support", position: "Lane" },
+            { name: "Carl", category: "Tank", position: "Lane" },
+            { name: "Charlie", category: "Marksman", position: "Lane" },
+            { name: "Chester", category: "Assassin", position: "Mid" },
+            { name: "Chuck", category: "Marksman", position: "Lane" },
+            { name: "Colette", category: "Marksman", position: "Lane" },
+            { name: "Colt", category: "Marksman", position: "Lane" },
+            { name: "Crow", category: "Assassin", position: "Mid" },
+            { name: "Darryl", category: "Tank", position: "Lane" },
+            { name: "Edgar", category: "Assassin", position: "Mid" },
+            { name: "El Primo", category: "Tank", position: "Lane" },
+            { name: "Emz", category: "Support", position: "Lane" },
+            { name: "Eve", category: "Marksman", position: "Lane" },
+            { name: "Fang", category: "Assassin", position: "Mid" },
+            { name: "Frank", category: "Tank", position: "Lane" },
+            { name: "Gale", category: "Support", position: "Mid" },
+            { name: "Gene", category: "Support", position: "Lane" },
+            { name: "Griff", category: "Marksman", position: "Lane" },
+            { name: "Grom", category: "Marksman", position: "Lane" },
+            { name: "Gus", category: "Support", position: "Lane" },
+            { name: "Jacky", category: "Tank", position: "Lane" },
+            { name: "Janet", category: "Marksman", position: "Lane" },
+            { name: "Jessie", category: "Support", position: "Lane" },
+            { name: "Leon", category: "Assassin", position: "Mid" },
+            { name: "Lola", category: "Marksman", position: "Lane" },
+            { name: "Lou", category: "Support", position: "Lane" },
+            { name: "Max", category: "Assassin", position: "Mid" },
+            { name: "Meg", category: "Tank", position: "Lane" },
+            { name: "Mortis", category: "Assassin", position: "Mid" },
+            { name: "Mr. P", category: "Support", position: "Lane" },
+            { name: "Nani", category: "Marksman", position: "Lane" },
+            { name: "Nita", category: "Tank", position: "Lane" },
+            { name: "Otis", category: "Support", position: "Lane" },
+            { name: "Pam", category: "Support", position: "Lane" },
+            { name: "Penny", category: "Marksman", position: "Lane" },
+            { name: "Piper", category: "Marksman", position: "Lane" },
+            { name: "Rico", category: "Marksman", position: "Lane" },
+            { name: "Rosa", category: "Tank", position: "Lane" },
+            { name: "Ruffs", category: "Support", position: "Lane" },
+            { name: "Sam", category: "Tank", position: "Lane" },
+            { name: "Sandy", category: "Support", position: "Lane" },
+            { name: "Shelly", category: "Tank", position: "Lane" },
+            { name: "Spike", category: "Marksman", position: "Lane" },
+            { name: "Sprout", category: "Support", position: "Lane" },
+            { name: "Stu", category: "Assassin", position: "Mid" },
+            { name: "Surge", category: "Marksman", position: "Lane" },
+            { name: "Tara", category: "Support", position: "Lane" },
+            { name: "Tick", category: "Marksman", position: "Lane" },
+            { name: "Willow", category: "Assassin", position: "Mid" }
         ];
 
         const counter = {
-            "8-Bit": ["Max", "Piper"],
-            "Amber": ["Rico", "Shelly"],
-            "Angelo": ["Crow", "Gene"],
-            "Ash": ["Spike", "Colt"],
-            "Barley": ["Mortis", "Bibi"],
-            "Bea": ["Bull", "Rosa"],
-            "Belle": ["Colt", "Edgar"],
-            "Berry": ["Bo", "Shelly"],
-            "Bibi": ["Edgar", "Max"],
-            "Bo": ["Colette", "Gene"],
-            "Bonnie": ["Piper", "Brock"],
-            "Brock": ["Leon", "Rico"],
-            "Bull": ["Bea", "Edgar"],
-            "Buster": ["Otis", "Max"],
-            "Buzz": ["Max", "Gene"],
-            "Byron": ["Mortis", "Frank"],
-            "Carl": ["Shelly", "Tara"],
-            "Charlie": ["Colt", "Gene"],
-            "Chester": ["Gale", "Ruffs"],
-            "Chuck": ["Poco", "Max"],
-            "Clancy": ["R-T", "Bibi"],
-            "Colette": ["Surge", "Brock"],
-            "Colt": ["Bull", "Gene"],
-            "Cordelius": ["Gene", "Max"],
-            "Crow": ["Leon", "Piper"],
-            "Darryl": ["Piper", "Sprout"],
-            "Doug": ["Griff", "Frank"],
-            "Draco": ["Sandy", "Nani"],
-            "Dynamike": ["Shelly", "Gene"],
-            "Edgar": ["Bo", "Shelly"],
-            "El Primo": ["Piper", "Leon"],
-            "Emz": ["Dynamike", "Barley"],
-            "Eve": ["Sprout", "Gene"],
-            "Fang": ["Shelly", "Frank"],
-            "Finx": ["Gene", "Max"],
-            "Frank": ["Belle", "Piper"],
-            "Gale": ["Edgar", "Shelly"],
-            "Gene": ["Otis", "Bibi"],
-            "Gray": ["Max", "Surge"],
-            "Griff": ["Bo", "Brock"],
-            "Grom": ["Rico", "Piper"],
-            "Gus": ["Mortis", "Edgar"],
-            "Hank": ["Piper", "Max"],
-            "Jacky": ["Belle", "Bibi"],
-            "Janet": ["Spike", "Piper"],
-            "Jessie": ["Bull", "Brock"],
-            "Juju": ["Brock", "Shelly"],
-            "Kenji": ["Colt", "Bibi"],
-            "Kit": ["Ruffs", "Bo"],
-            "Larry & Lawrie": ["Grom", "Rico"],
-            "Leon": ["Spike", "Tara"],
-            "Lily": ["Mortis", "Max"],
-            "Lola": ["Shelly", "Leon"],
-            "Lou": ["Edgar", "Colette"],
-            "Lumi": ["Colette", "Max"],
-            "Maisie": ["Piper", "Frank"],
-            "Mandy": ["Surge", "Edgar"],
-            "Max": ["Crow", "Mortis"],
-            "Meeple": ["Ruffs", "Leon"],
-            "Meg": ["Mortis", "Piper"],
-            "Melodie": ["Gene", "Max"],
-            "Mico": ["Piper", "Rico"],
-            "Moe": ["Gale", "Shelly"],
-            "Mortis": ["Bull", "Edgar"],
-            "Mr. P": ["Leon", "Tara"],
-            "Nani": ["Edgar", "Piper"],
-            "Nita": ["Colette", "Max"],
-            "Ollie": ["Shelly", "Edgar"],
-            "Otis": ["Crow", "Piper"],
-            "Pam": ["Spike", "Colt"],
-            "Pearl": ["Gene", "Piper"],
-            "Penny": ["Surge", "Max"],
-            "Piper": ["Max", "Bibi"],
-            "Poco": ["Bo", "Brock"],
-            "R-T": ["Rico", "Edgar"],
-            "Rico": ["Edgar", "Colette"],
-            "Rosa": ["Colt", "Bea"],
-            "Ruffs": ["Brock", "Frank"],
-            "Sam": ["Belle", "Edgar"],
-            "Sandy": ["Shelly", "Tara"],
-            "Shade": ["Spike", "Bibi"],
-            "Shelly": ["Bull", "Mortis"],
-            "Spike": ["Mortis", "Piper"],
-            "Sprout": ["Piper", "Colt"],
-            "Squeak": ["Edgar", "Max"],
-            "Stu": ["Colette", "Brock"],
-            "Surge": ["Leon", "Bibi"],
-            "Tara": ["Gale", "Edgar"],
-            "Tick": ["Shelly", "Piper"],
-            "Willow": ["Mortis", "Piper"]
+            "8-Bit": { "green": ["Max", "Piper"], "yellow": ["Brock", "Gene"] },
+            "Amber": { "green": ["Rico", "Shelly"], "yellow": ["Bull", "Frank"] },
+            "Angelo": { "green": ["Crow", "Gene"], "yellow": ["Edgar", "Max"] },
+            "Barley": { "green": ["Piper", "Frank"], "yellow": ["Edgar", "Shelly"] },
+            "Bea": { "green": ["Bull", "Rosa"], "yellow": ["Max", "Gene"] },
+            "Belle": { "green": ["Edgar", "Max"], "yellow": ["Bibi", "Piper"] },
+            "Bibi": { "green": ["Edgar", "Max"], "yellow": ["Shelly", "Piper"] },
+            "Bo": { "green": ["Colette", "Gene"], "yellow": ["Brock", "Max"] },
+            "Brock": { "green": ["Leon", "Rico"], "yellow": ["Piper", "Max"] },
+            "Bull": { "green": ["Bea", "Edgar"], "yellow": ["Max", "Piper"] },
+            "Buster": { "green": ["Max", "Otis"], "yellow": ["Gene", "Piper"] },
+            "Buzz": { "green": ["Max", "Gene"], "yellow": ["Edgar", "Brock"] },
+            "Carl": { "green": ["Shelly", "Tara"], "yellow": ["Bull", "Gene"] },
+            "Crow": { "green": ["Leon", "Piper"], "yellow": ["Gene", "Max"] },
+            "Edgar": { "green": ["Max", "Piper"], "yellow": ["Bibi", "Shelly"] },
+            "Frank": { "green": ["Piper", "Max"], "yellow": ["Gene", "Rico"] },
+            "Gene": { "green": ["Piper", "Max"], "yellow": ["Edgar", "Bibi"] },
+            "Leon": { "green": ["Piper", "Shelly"], "yellow": ["Max", "Rico"] },
+            "Max": { "green": ["Crow", "Mortis"], "yellow": ["Piper", "Bibi"] },
+            "Piper": { "green": ["Max", "Bibi"], "yellow": ["Gene", "Rico"] },
+            "Rico": { "green": ["Piper", "Max"], "yellow": ["Bibi", "Edgar"] },
+            "Shelly": { "green": ["Bull", "Mortis"], "yellow": ["Piper", "Rico"] }
         };
 
         const mappe = {
@@ -150,8 +143,8 @@
                 select.innerHTML = "<option value=''>-- Seleziona un Brawler --</option>";
                 brawlers.forEach(brawler => {
                     let option = document.createElement("option");
-                    option.value = brawler;
-                    option.textContent = brawler;
+                    option.value = brawler.name;
+                    option.textContent = `${brawler.name} (${brawler.category}, ${brawler.position})`;
                     select.appendChild(option);
                 });
             });
@@ -159,8 +152,13 @@
 
         function suggerisciCounter(num) {
             let brawlerSelezionato = document.getElementById(`brawler${num}`).value;
-            let counterSuggeriti = counter[brawlerSelezionato] || ["-"];
-            document.getElementById(`counter${num}`).textContent = `Counter ${num}: ${counterSuggeriti.join(", ")}`;
+            let counterSuggeriti = counter[brawlerSelezionato] || { "green": [], "yellow": [] };
+            let counterElement = document.getElementById(`counter${num}`);
+
+            // Visualizza i counter con i colori
+            let counterHTML = `<strong>Ottimi counter:</strong> ${counterSuggeriti.green.map(c => `<span style="color:green">${c}</span>`).join(", ")}<br>`;
+            counterHTML += `<strong>Counter meno efficaci:</strong> ${counterSuggeriti.yellow.map(c => `<span style="color:yellow">${c}</span>`).join(", ")}`;
+            counterElement.innerHTML = counterHTML;
         }
 
         function caricaMappe() {
