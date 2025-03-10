@@ -1,4 +1,5 @@
-const brawlers = [
+￼Inserisci qui il contenuto del file
+ const brawlers = [
     { nome: "Shelly", tipo: "Tank", mid: false },
     { nome: "Colt", tipo: "Tiratore", mid: true },
     { nome: "Bull", tipo: "Tank", mid: false },
@@ -35,7 +36,7 @@ const mappe = {
 function caricaMappe() {
     const modalita = document.getElementById("modalita").value;
     const selectMappa = document.getElementById("mappa");
-    selectMappa.innerHTML = "";
+    selectMappa.innerHTML = ""; // Pulisce la lista delle mappe precedenti
     mappe[modalita].forEach(mappa => {
         let option = document.createElement("option");
         option.value = mappa;
