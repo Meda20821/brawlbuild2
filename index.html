@@ -3,74 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Selezione Mappa - Brawl Stars</title>
+    <title>Brawl Stars Team Builder</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            padding: 20px;
+            background-color: #f4f4f4;
         }
-        select, button {
-            font-size: 16px;
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        select {
+            width: 100%;
             padding: 10px;
-            margin: 10px;
+            margin: 10px 0;
+            font-size: 16px;
         }
     </style>
 </head>
 <body>
 
-    <h1>Seleziona una modalità</h1>
-    
-    <!-- Selettore della modalità -->
-    <label for="modalita">Modalità:</label>
-    <select id="modalita" onchange="aggiornaMappe()">
-        <option value="">-- Seleziona --</option>
-        <option value="ko">KO</option>
-        <option value="rapina">Rapina</option>
-        <option value="arraffagemme">Arraffagemme</option>
-        <option value="footbrawl">Footbrawl</option>
-        <option value="hockeybrawl">Hockeybrawl</option>
-    </select>
+    <div class="container">
+        <h2>Seleziona la Mappa</h2>
+        <select id="mapSelect">
+            <option value="ko">KO</option>
+            <option value="rapina">Rapina</option>
+            <option value="arraffagemme">Arraffagemme</option>
+            <option value="footbrawl">Footbrawl</option>
+            <option value="hockeybrawl">Hockeybrawl</option>
+        </select>
 
-    <h2>Seleziona una mappa</h2>
+        <h2>Squadra 1</h2>
+        <select id="team1_brawler1"></select>
+        <select id="team1_brawler2"></select>
+        <select id="team1_brawler3"></select>
 
-    <!-- Selettore delle mappe -->
-    <label for="mappa">Mappa:</label>
-    <select id="mappa">
-        <option value="">-- Seleziona una modalità prima --</option>
-    </select>
+        <h2>Squadra 2</h2>
+        <select id="team2_brawler1"></select>
+        <select id="team2_brawler2"></select>
+        <select id="team2_brawler3"></select>
+    </div>
 
     <script>
-        // Dati delle mappe per ogni modalità
-        const mappePerModalita = {
-            ko: ["Zona Pericolosa", "Battaglia Finale", "Scontro Letale"],
-            rapina: ["Canyon Dorato", "Corsa all'Oro", "Sicurezza Massima"],
-            arraffagemme: ["Miniere Roventi", "Cascata Gemmata", "Montagne Gemmate"],
-            footbrawl: ["Stadio Verde", "Colosseo Rimbalzante", "Campetto Urbano"],
-            hockeybrawl: ["Arena Ghiacciata", "Slapshot", "Pista di Ghiaccio"]
-        };
+        const brawlers = [
+            "Shelly", "Colt", "Bull", "Brock", "Rico", "Spike", "Barley", "Dynamike",
+            "Bo", "Crow", "Piper", "Pam", "Frank", "Mortis", "Tara", "Darryl", "Penny",
+            "Carl", "Gene", "Leon", "Rosa", "Bibi", "Tick", "8-Bit", "Sandy", "Bea",
+            "Emz", "Mr. P", "Max", "Jacky", "Gale", "Nani", "Sprout", "Surge", "Colette",
+            "Lou", "Byron", "Edgar", "Ruffs", "Stu", "Belle", "Squeak", "Buzz", "Griff",
+            "Ash", "Lola", "Fang", "Eve", "Janet", "Bonnie", "Otis", "Sam", "Gus",
+            "Buster", "Chester", "Gray", "Mandy", "R-T", "Willow", "Maisie", "Hank",
+            "Pearl", "Chuck", "Doug", "Cordelius", "Leonard", "Amber", "Louie", "Draco",
+            "Franklin", "Veronica", "Magnus", "Jax", "Holly", "Brutus", "Eliza", "Felix",
+            "Zane", "Oriana", "Gideon", "Helios", "Selene", "Nova"
+        ];
 
-        // Funzione per aggiornare la lista delle mappe
-        function aggiornaMappe() {
-            let modalitaSelezionata = document.getElementById("modalita").value;
-            let mappaSelect = document.getElementById("mappa");
-            
-            // Pulisce le opzioni precedenti
-            mappaSelect.innerHTML = "";
-
-            if (modalitaSelezionata && mappePerModalita[modalitaSelezionata]) {
-                mappePerModalita[modalitaSelezionata].forEach(mappa => {
-                    let option = document.createElement("option");
-                    option.value = mappa;
-                    option.textContent = mappa;
-                    mappaSelect.appendChild(option);
-                });
-            } else {
+        function populateBrawlers(selectId) {
+            const select = document.getElementById(selectId);
+            brawlers.forEach(brawler => {
                 let option = document.createElement("option");
-                option.textContent = "-- Seleziona una modalità prima --";
-                mappaSelect.appendChild(option);
-            }
+                option.value = brawler.toLowerCase();
+                option.textContent = brawler;
+                select.appendChild(option);
+            });
         }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            populateBrawlers("team1_brawler1");
+            populateBrawlers("team1_brawler2");
+            populateBrawlers("team1_brawler3");
+            populateBrawlers("team2_brawler1");
+            populateBrawlers("team2_brawler2");
+            populateBrawlers("team2_brawler3");
+        });
     </script>
 
 </body>
