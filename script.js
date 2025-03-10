@@ -11,6 +11,7 @@
     
     <label for="modalita">Seleziona la modalità:</label>
     <select id="modalita" onchange="caricaMappe()">
+        <option value="">-- Seleziona una modalità --</option>
         <option value="KO">KO</option>
         <option value="Rapina">Rapina</option>
         <option value="Arraffagemme">Arraffagemme</option>
@@ -19,17 +20,25 @@
     </select>
 
     <label for="mappa">Seleziona la mappa:</label>
-    <select id="mappa"></select>
+    <select id="mappa">
+        <option value="">-- Seleziona una mappa --</option>
+    </select>
 
     <h2>Squadra 1</h2>
-    <select class="brawler-select" onchange="suggerisciCounter(0)"></select>
-    <select class="brawler-select" onchange="suggerisciCounter(1)"></select>
-    <select class="brawler-select" onchange="suggerisciCounter(2)"></select>
+    <label for="brawler1">Brawler 1:</label>
+    <select id="brawler1" class="brawler-select" onchange="suggerisciCounter(0)"></select>
+    <label for="brawler2">Brawler 2:</label>
+    <select id="brawler2" class="brawler-select" onchange="suggerisciCounter(1)"></select>
+    <label for="brawler3">Brawler 3:</label>
+    <select id="brawler3" class="brawler-select" onchange="suggerisciCounter(2)"></select>
 
     <h2>Squadra 2 (Counter suggeriti)</h2>
-    <select class="counter-select"></select>
-    <select class="counter-select"></select>
-    <select class="counter-select"></select>
+    <label for="counter1">Counter 1:</label>
+    <select id="counter1" class="counter-select"></select>
+    <label for="counter2">Counter 2:</label>
+    <select id="counter2" class="counter-select"></select>
+    <label for="counter3">Counter 3:</label>
+    <select id="counter3" class="counter-select"></select>
 
     <script>
         const brawlers = [
@@ -37,29 +46,31 @@
         ];
 
         const mappePerModalita = {
-            "KO": ["Mappa 1", "Mappa 2"],
-            "Rapina": ["Mappa 3", "Mappa 4"],
-            "Arraffagemme": ["Mappa 5", "Mappa 6"],
-            "Footbrawl": ["Mappa 7", "Mappa 8"],
-            "Hockeybrawl": ["Mappa 9", "Mappa 10"]
+            "KO": ["Zona Pericolosa", "Ultima Chance"],
+            "Rapina": ["Banca Blindata", "Canyon Pericoloso"],
+            "Arraffagemme": ["Caverna di Cristallo", "Mina Rocciosa"],
+            "Footbrawl": ["Stadio Stella", "Calcio Infuocato"],
+            "Hockeybrawl": ["Pista Ghiacciata", "Ghiaccio Bollente"]
         };
 
         function caricaMappe() {
             let modalita = document.getElementById("modalita").value;
             let mappaSelect = document.getElementById("mappa");
-            mappaSelect.innerHTML = "";
-            mappePerModalita[modalita].forEach(mappa => {
-                let option = document.createElement("option");
-                option.value = mappa;
-                option.textContent = mappa;
-                mappaSelect.appendChild(option);
-            });
+            mappaSelect.innerHTML = "<option value=''>-- Seleziona una mappa --</option>";
+            if (mappePerModalita[modalita]) {
+                mappePerModalita[modalita].forEach(mappa => {
+                    let option = document.createElement("option");
+                    option.value = mappa;
+                    option.textContent = mappa;
+                    mappaSelect.appendChild(option);
+                });
+            }
         }
 
         function popolaSelect(className) {
             let selectElements = document.querySelectorAll("." + className);
             selectElements.forEach(select => {
-                select.innerHTML = "";
+                select.innerHTML = "<option value=''>-- Seleziona un Brawler --</option>";
                 brawlers.forEach(brawler => {
                     let option = document.createElement("option");
                     option.value = brawler;
@@ -74,7 +85,7 @@
             let counterSelect = document.querySelectorAll(".counter-select")[index];
             let brawlerSelezionato = squadra1[index].value;
             let counter = brawlers.filter(b => b !== brawlerSelezionato);
-            counterSelect.innerHTML = "";
+            counterSelect.innerHTML = "<option value=''>-- Seleziona un Counter --</option>";
             counter.forEach(brawler => {
                 let option = document.createElement("option");
                 option.value = brawler;
