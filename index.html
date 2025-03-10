@@ -135,6 +135,14 @@
             "Willow": "Mortis"
         };
 
+        const mappe = {
+            "KO": ["Flaring Phoenix", "Goldarm Gulch", "Out in the Open"],
+            "Rapina": ["Bridge Too Far", "Hot Potato", "Kaboom Canyon"],
+            "Arraffagemme": ["Hard Rock Mine", "Last Stop", "Undermine"],
+            "Footbrawl": ["Center Stage", "Pinball Dreams", "Triple Dribble"],
+            "Hockeybrawl": ["Dueling Beetles", "Open Business", "Parallel Plays"]
+        };
+
         function popolaSelect() {
             let selectElements = document.querySelectorAll(".brawler-select");
             selectElements.forEach(select => {
@@ -154,7 +162,24 @@
             document.getElementById(`counter${num}`).textContent = `Counter ${num}: ${counterBrawler}`;
         }
 
-        document.addEventListener("DOMContentLoaded", popolaSelect);
+        function caricaMappe() {
+            let modalita = document.getElementById("modalita").value;
+            let mappaSelect = document.getElementById("mappa");
+            mappaSelect.innerHTML = "<option value=''>-- Seleziona una mappa --</option>";
+            if (mappe[modalita]) {
+                mappe[modalita].forEach(mappa => {
+                    let option = document.createElement("option");
+                    option.value = mappa;
+                    option.textContent = mappa;
+                    mappaSelect.appendChild(option);
+                });
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            popolaSelect();
+            caricaMappe();
+        });
     </script>
 </body>
 </html>
