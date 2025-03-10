@@ -25,127 +25,64 @@
     </select>
 
     <h2>Squadra 1</h2>
-    <label for="brawler1">Brawler 1:</label>
-    <select id="brawler1" class="brawler-select" onchange="suggerisciCounter(1)"></select>
-    <label for="brawler2">Brawler 2:</label>
-    <select id="brawler2" class="brawler-select" onchange="suggerisciCounter(2)"></select>
-    <label for="brawler3">Brawler 3:</label>
-    <select id="brawler3" class="brawler-select" onchange="suggerisciCounter(3)"></select>
+    <div class="brawler-container">
+        <label for="brawler1">Brawler 1:</label>
+        <select id="brawler1" class="brawler-select" onchange="aggiornaInfo(1)"></select>
+        <img id="brawler1-img" class="brawler-img" src="" alt="">
+        <p id="categoria1" class="categoria"></p>
+    </div>
+
+    <div class="brawler-container">
+        <label for="brawler2">Brawler 2:</label>
+        <select id="brawler2" class="brawler-select" onchange="aggiornaInfo(2)"></select>
+        <img id="brawler2-img" class="brawler-img" src="" alt="">
+        <p id="categoria2" class="categoria"></p>
+    </div>
+
+    <div class="brawler-container">
+        <label for="brawler3">Brawler 3:</label>
+        <select id="brawler3" class="brawler-select" onchange="aggiornaInfo(3)"></select>
+        <img id="brawler3-img" class="brawler-img" src="" alt="">
+        <p id="categoria3" class="categoria"></p>
+    </div>
 
     <h2>Squadra 2 (Counter suggeriti)</h2>
-    <p id="counter1">Counter 1: -</p>
-    <p id="counter2">Counter 2: -</p>
-    <p id="counter3">Counter 3: -</p>
+    <p id="counter1" class="counter">Counter 1: -</p>
+    <p id="counter2" class="counter">Counter 2: -</p>
+    <p id="counter3" class="counter">Counter 3: -</p>
 
     <script>
         const brawlers = [
-            "8-Bit", "Amber", "Angelo", "Ash", "Barley", "Bea", "Belle", "Berry", "Bibi", "Bo", "Bonnie", "Brock", "Bull", "Buster", "Buzz", "Byron", "Carl", "Charlie", "Chester", "Chuck", "Clancy", "Colette", "Colt", "Cordelius", "Crow", "Darryl", "Doug", "Draco", "Dynamike", "Edgar", "El Primo", "Emz", "Eve", "Fang", "Finx", "Frank", "Gale", "Gene", "Gray", "Griff", "Grom", "Gus", "Hank", "Jacky", "Janet", "Jessie", "Juju", "Kenji", "Kit", "Larry & Lawrie", "Leon", "Lily", "Lola", "Lou", "Lumi", "Maisie", "Mandy", "Max", "Meeple", "Meg", "Melodie", "Mico", "Moe", "Mortis", "Mr. P", "Nani", "Nita", "Ollie", "Otis", "Pam", "Pearl", "Penny", "Piper", "Poco", "R-T", "Rico", "Rosa", "Ruffs", "Sam", "Sandy", "Shade", "Shelly", "Spike", "Sprout", "Squeak", "Stu", "Surge", "Tara", "Tick", "Willow"
+            "8-Bit", "Amber", "Angelo", "Ash", "Barley", "Bea", "Belle", "Berry", "Bibi", "Bo", "Bonnie", "Brock", "Bull", "Buster", "Buzz"
         ];
+
+        const categorie = {
+            "8-Bit": "Tiratore",
+            "Amber": "Assassino",
+            "Angelo": "Supporto",
+            "Ash": "Tank",
+            "Barley": "Lanciatore",
+            "Bea": "Tiratore",
+            "Belle": "Tiratore",
+            "Berry": "Tank",
+            "Bibi": "Tank",
+            "Bo": "Tiratore",
+            "Bonnie": "Ibrido",
+            "Brock": "Tiratore",
+            "Bull": "Tank",
+            "Buster": "Tank",
+            "Buzz": "Assassino"
+        };
 
         const counter = {
             "8-Bit": ["Max", "Piper"],
             "Amber": ["Rico", "Shelly"],
             "Angelo": ["Crow", "Gene"],
-            "Ash": ["Spike", "Colt"],
-            "Barley": ["Mortis", "Bibi"],
-            "Bea": ["Bull", "Rosa"],
-            "Belle": ["Colt", "Edgar"],
-            "Berry": ["Bo", "Shelly"],
-            "Bibi": ["Edgar", "Max"],
-            "Bo": ["Colette", "Gene"],
-            "Bonnie": ["Piper", "Brock"],
-            "Brock": ["Leon", "Rico"],
-            "Bull": ["Bea", "Edgar"],
-            "Buster": ["Otis", "Max"],
-            "Buzz": ["Max", "Gene"],
-            "Byron": ["Mortis", "Frank"],
-            "Carl": ["Shelly", "Tara"],
-            "Charlie": ["Colt", "Gene"],
-            "Chester": ["Gale", "Ruffs"],
-            "Chuck": ["Poco", "Max"],
-            "Clancy": ["R-T", "Bibi"],
-            "Colette": ["Surge", "Brock"],
-            "Colt": ["Bull", "Gene"],
-            "Cordelius": ["Gene", "Max"],
-            "Crow": ["Leon", "Piper"],
-            "Darryl": ["Piper", "Sprout"],
-            "Doug": ["Griff", "Frank"],
-            "Draco": ["Sandy", "Nani"],
-            "Dynamike": ["Shelly", "Gene"],
-            "Edgar": ["Bo", "Shelly"],
-            "El Primo": ["Piper", "Leon"],
-            "Emz": ["Dynamike", "Barley"],
-            "Eve": ["Sprout", "Gene"],
-            "Fang": ["Shelly", "Frank"],
-            "Finx": ["Gene", "Max"],
-            "Frank": ["Belle", "Piper"],
-            "Gale": ["Edgar", "Shelly"],
-            "Gene": ["Otis", "Bibi"],
-            "Gray": ["Max", "Surge"],
-            "Griff": ["Bo", "Brock"],
-            "Grom": ["Rico", "Piper"],
-            "Gus": ["Mortis", "Edgar"],
-            "Hank": ["Piper", "Max"],
-            "Jacky": ["Belle", "Bibi"],
-            "Janet": ["Spike", "Piper"],
-            "Jessie": ["Bull", "Brock"],
-            "Juju": ["Brock", "Shelly"],
-            "Kenji": ["Colt", "Bibi"],
-            "Kit": ["Ruffs", "Bo"],
-            "Larry & Lawrie": ["Grom", "Rico"],
-            "Leon": ["Spike", "Tara"],
-            "Lily": ["Mortis", "Max"],
-            "Lola": ["Shelly", "Leon"],
-            "Lou": ["Edgar", "Colette"],
-            "Lumi": ["Colette", "Max"],
-            "Maisie": ["Piper", "Frank"],
-            "Mandy": ["Surge", "Edgar"],
-            "Max": ["Crow", "Mortis"],
-            "Meeple": ["Ruffs", "Leon"],
-            "Meg": ["Mortis", "Piper"],
-            "Melodie": ["Gene", "Max"],
-            "Mico": ["Piper", "Rico"],
-            "Moe": ["Gale", "Shelly"],
-            "Mortis": ["Bull", "Edgar"],
-            "Mr. P": ["Leon", "Tara"],
-            "Nani": ["Edgar", "Piper"],
-            "Nita": ["Colette", "Max"],
-            "Ollie": ["Shelly", "Edgar"],
-            "Otis": ["Crow", "Piper"],
-            "Pam": ["Spike", "Colt"],
-            "Pearl": ["Gene", "Piper"],
-            "Penny": ["Surge", "Max"],
-            "Piper": ["Max", "Bibi"],
-            "Poco": ["Bo", "Brock"],
-            "R-T": ["Rico", "Edgar"],
-            "Rico": ["Edgar", "Colette"],
-            "Rosa": ["Colt", "Bea"],
-            "Ruffs": ["Brock", "Frank"],
-            "Sam": ["Belle", "Edgar"],
-            "Sandy": ["Shelly", "Tara"],
-            "Shade": ["Spike", "Bibi"],
-            "Shelly": ["Bull", "Mortis"],
-            "Spike": ["Mortis", "Piper"],
-            "Sprout": ["Piper", "Colt"],
-            "Squeak": ["Edgar", "Max"],
-            "Stu": ["Colette", "Brock"],
-            "Surge": ["Leon", "Bibi"],
-            "Tara": ["Gale", "Edgar"],
-            "Tick": ["Shelly", "Piper"],
-            "Willow": ["Mortis", "Piper"]
-        };
-
-        const mappe = {
-            "KO": ["Flaring Phoenix", "Goldarm Gulch", "Out in the Open"],
-            "Rapina": ["Bridge Too Far", "Hot Potato", "Kaboom Canyon"],
-            "Arraffagemme": ["Hard Rock Mine", "Last Stop", "Undermine"],
-            "Footbrawl": ["Center Stage", "Pinball Dreams", "Triple Dribble"],
-            "Hockeybrawl": ["Dueling Beetles", "Open Business", "Parallel Plays"]
+            "Ash": ["Spike", "Colt"]
         };
 
         function popolaSelect() {
-            let selectElements = document.querySelectorAll(".brawler-select");
-            selectElements.forEach(select => {
+            document.querySelectorAll(".brawler-select").forEach(select => {
                 select.innerHTML = "<option value=''>-- Seleziona un Brawler --</option>";
                 brawlers.forEach(brawler => {
                     let option = document.createElement("option");
@@ -156,30 +93,39 @@
             });
         }
 
-        function suggerisciCounter(num) {
+        function aggiornaInfo(num) {
             let brawlerSelezionato = document.getElementById(`brawler${num}`).value;
-            let counterSuggeriti = counter[brawlerSelezionato] || ["-"];
-            document.getElementById(`counter${num}`).textContent = `Counter ${num}: ${counterSuggeriti.join(", ")}`;
+            let img = document.getElementById(`brawler${num}-img`);
+            let categoria = document.getElementById(`categoria${num}`);
+            let counterText = document.getElementById(`counter${num}`);
+
+            if (brawlerSelezionato) {
+                img.src = `https://static.wikia.nocookie.net/brawlstars/images/${brawlerSelezionato.replace(" ", "_")}.png`;
+                img.alt = brawlerSelezionato;
+                categoria.textContent = `Categoria: ${categorie[brawlerSelezionato] || "Sconosciuta"}`;
+
+                let counterSuggeriti = counter[brawlerSelezionato] || ["-"];
+                counterText.innerHTML = `Counter ${num}: ${counterSuggeriti.map(c => `<span class="counter-name">${c}</span>`).join(", ")}`;
+
+                evidenziaCounter();
+            } else {
+                img.src = "";
+                categoria.textContent = "";
+                counterText.textContent = `Counter ${num}: -`;
+            }
         }
 
-        function caricaMappe() {
-            let modalita = document.getElementById("modalita").value;
-            let mappaSelect = document.getElementById("mappa");
-            mappaSelect.innerHTML = "<option value=''>-- Seleziona una mappa --</option>";
-            if (mappe[modalita]) {
-                mappe[modalita].forEach(mappa => {
-                    let option = document.createElement("option");
-                    option.value = mappa;
-                    option.textContent = mappa;
-                    mappaSelect.appendChild(option);
-                });
-            }
+        function evidenziaCounter() {
+            document.querySelectorAll(".counter-name").forEach(el => {
+                let brawler = el.textContent;
+                el.style.color = counter[brawler] ? "red" : "orange";
+            });
         }
 
         document.addEventListener("DOMContentLoaded", () => {
             popolaSelect();
-            caricaMappe();
         });
     </script>
 </body>
 </html>
+ 
