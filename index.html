@@ -53,7 +53,12 @@
 
     <script>
         const brawlers = [
-            "8-Bit", "Amber", "Angelo", "Ash", "Barley", "Bea", "Belle", "Berry", "Bibi", "Bo", "Bonnie", "Brock", "Bull", "Buster", "Buzz"
+            "8-Bit", "Amber", "Angelo", "Ash", "Barley", "Bea", "Belle", "Berry", "Bibi", "Bo", "Bonnie", "Brock", "Bull", "Buster", "Buzz",
+            "Byron", "Carl", "Charlie", "Chester", "Chuck", "Clancy", "Colette", "Colt", "Cordelius", "Crow", "Darryl", "Doug", "Draco", "Dynamike",
+            "Edgar", "El Primo", "Emz", "Eve", "Fang", "Finx", "Frank", "Gale", "Gene", "Gray", "Griff", "Grom", "Gus", "Hank", "Jacky", "Janet",
+            "Jessie", "Juju", "Kenji", "Kit", "Larry & Lawrie", "Leon", "Lily", "Lola", "Lou", "Lumi", "Maisie", "Mandy", "Max", "Meeple", "Meg",
+            "Melodie", "Mico", "Moe", "Mortis", "Mr. P", "Nani", "Nita", "Ollie", "Otis", "Pam", "Pearl", "Penny", "Piper", "Poco", "R-T", "Rico",
+            "Rosa", "Ruffs", "Sam", "Sandy", "Shade", "Shelly", "Spike", "Sprout", "Squeak", "Stu", "Surge", "Tara", "Tick", "Willow"
         ];
 
         const categorie = {
@@ -72,13 +77,6 @@
             "Bull": "Tank",
             "Buster": "Tank",
             "Buzz": "Assassino"
-        };
-
-        const counter = {
-            "8-Bit": ["Max", "Piper"],
-            "Amber": ["Rico", "Shelly"],
-            "Angelo": ["Crow", "Gene"],
-            "Ash": ["Spike", "Colt"]
         };
 
         function popolaSelect() {
@@ -122,10 +120,23 @@
             });
         }
 
+        function caricaMappe() {
+            let modalita = document.getElementById("modalita").value;
+            let mappaSelect = document.getElementById("mappa");
+            mappaSelect.innerHTML = "<option value=''>-- Seleziona una mappa --</option>";
+            if (mappe[modalita]) {
+                mappe[modalita].forEach(mappa => {
+                    let option = document.createElement("option");
+                    option.value = mappa;
+                    option.textContent = mappa;
+                    mappaSelect.appendChild(option);
+                });
+            }
+        }
+
         document.addEventListener("DOMContentLoaded", () => {
             popolaSelect();
         });
     </script>
 </body>
 </html>
- 
