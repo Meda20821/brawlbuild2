@@ -1,37 +1,162 @@
-￼Inserisci qui il contenuto del file
- <!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brawl Stars Team Builder</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <h1>Brawl Stars Team Builder</h1>
-    
-    <label for="modalita">Seleziona la modalità:</label>
-    <select id="modalita" onchange="caricaMappe()">
-        <option value="KO">KO</option>
-        <option value="Rapina">Rapina</option>
-        <option value="Arraffagemme">Arraffagemme</option>
-        <option value="Footbrawl">Footbrawl</option>
-        <option value="Hockeybrawl">Hockeybrawl</option>
-    </select>
+const brawlers = [
+    { nome: "Shelly", tipo: "Tank", mid: false },
+    { nome: "Colt", tipo: "Tiratore", mid: true },
+    { nome: "Bull", tipo: "Tank", mid: false },
+    { nome: "Brock", tipo: "Tiratore", mid: true },
+    { nome: "Dynamike", tipo: "Lanciatore", mid: false },
+    { nome: "Bo", tipo: "Supporto", mid: true },
+    { nome: "Emz", tipo: "Controllo", mid: true },
+    { nome: "Rosa", tipo: "Tank", mid: false },
+    { nome: "Bea", tipo: "Tiratore", mid: true },
+    { nome: "Edgar", tipo: "Assassino", mid: false },
+    { nome: "Nita", tipo: "Tank", mid: false },
+    { nome: "Jessie", tipo: "Supporto", mid: true },
+    { nome: "Poco", tipo: "Supporto", mid: true },
+    { nome: "Frank", tipo: "Tank", mid: false },
+    { nome: "Carl", tipo: "Tiratore", mid: true },
+    { nome: "Rico", tipo: "Tiratore", mid: true },
+    { nome: "Penny", tipo: "Supporto", mid: true },
+    { nome: "Tara", tipo: "Controllo", mid: true },
+    { nome: "Gene", tipo: "Supporto", mid: true },
+    { nome: "Max", tipo: "Supporto", mid: true },
+    { nome: "Leon", tipo: "Assassino", mid: false },
+    { nome: "Spike", tipo: "Tiratore", mid: true },
+    { nome: "Crow", tipo: "Assassino", mid: false },
+    { nome: "Ricochet", tipo: "Tiratore", mid: true },
+    { nome: "Bibi", tipo: "Tank", mid: false },
+    { nome: "Surge", tipo: "Assassino", mid: true },
+    { nome: "Amber", tipo: "Tiratore", mid: true },
+    { nome: "Lou", tipo: "Supporto", mid: true },
+    { nome: "El Primo", tipo: "Tank", mid: false },
+    { nome: "Barley", tipo: "Lanciatore", mid: true },
+    { nome: "Piper", tipo: "Tiratore", mid: true },
+    { nome: "Pam", tipo: "Supporto", mid: true },
+    { nome: "Maggie", tipo: "Tank", mid: false },
+    { nome: "Sandy", tipo: "Controllo", mid: true },
+    { nome: "Jacky", tipo: "Tank", mid: false },
+    { nome: "Gale", tipo: "Controllo", mid: true },
+    { nome: "Byron", tipo: "Supporto", mid: true },
+    { nome: "Stuart", tipo: "Tiratore", mid: true },
+    { nome: "Otis", tipo: "Controllo", mid: true },
+    { nome: "Stu", tipo: "Assassino", mid: true },
+    { nome: "Grom", tipo: "Lanciatore", mid: true },
+    { nome: "Fang", tipo: "Assassino", mid: false },
+    { nome: "Chester", tipo: "Controllo", mid: true },
+    { nome: "Buster", tipo: "Tank", mid: false },
+    { nome: "Squeak", tipo: "Lanciatore", mid: true },
+    { nome: "Ruffs", tipo: "Supporto", mid: true },
+    { nome: "Bell", tipo: "Tiratore", mid: true }
+];
 
-    <label for="mappa">Seleziona la mappa:</label>
-    <select id="mappa"></select>
+const counter = {
+    "Shelly": "Colt",
+    "Colt": "Bull",
+    "Bull": "Bea",
+    "Brock": "Edgar",
+    "Dynamike": "Shelly",
+    "Bo": "Emz",
+    "Emz": "Dynamike",
+    "Rosa": "Brock",
+    "Bea": "Bull",
+    "Edgar": "Bo",
+    "Nita": "Spike",
+    "Jessie": "Crow",
+    "Poco": "Edgar",
+    "Frank": "Bibi",
+    "Carl": "Rosa",
+    "Rico": "Dynamike",
+    "Penny": "Bibi",
+    "Tara": "Penny",
+    "Gene": "Frank",
+    "Max": "Dynamike",
+    "Leon": "Shelly",
+    "Spike": "Tara",
+    "Crow": "Poco",
+    "Ricochet": "Nita",
+    "Bibi": "Penny",
+    "Surge": "Max",
+    "Amber": "Barley",
+    "Lou": "Spike",
+    "El Primo": "Edgar",
+    "Barley": "Rico",
+    "Piper": "Tara",
+    "Pam": "Tara",
+    "Maggie": "Jacky",
+    "Sandy": "Gene",
+    "Jacky": "Nita",
+    "Gale": "Leon",
+    "Byron": "Gene",
+    "Stuart": "Spike",
+    "Otis": "Bea",
+    "Stu": "Amber",
+    "Grom": "Bibi",
+    "Fang": "Poco",
+    "Chester": "Bea",
+    "Buster": "Shelly",
+    "Squeak": "Rico",
+    "Ruffs": "Tara",
+    "Bell": "Penny"
+};
 
-    <h2>Squadra 1</h2>
-    <select class="brawler-select" onchange="suggerisciCounter(0)"></select>
-    <select class="brawler-select" onchange="suggerisciCounter(1)"></select>
-    <select class="brawler-select" onchange="suggerisciCounter(2)"></select>
+const mappe = {
+    "KO": [
+        "Alla Luce del Sole",
+        "Il Rifugio della Stella",
+        "Sabbia e Polvere"
+    ],
+    "Rapina": [
+        "Città dei Banditi",
+        "Bancomat Assaltato",
+        "Città di Minatori"
+    ],
+    "Arraffagemme": [
+        "Sardine",
+        "Caos Supremo",
+        "Palude"
+    ],
+    "Footbrawl": [
+        "Stadio",
+        "Campo da Calcio",
+        "Piazza Olimpica"
+    ],
+    "Hockeybrawl": [
+        "Patinoire",
+        "Arena di Ghiaccio",
+        "Il Regno del Ghiaccio"
+    ]
+};
 
-    <h2>Squadra 2 (Counter suggeriti)</h2>
-    <select class="counter-select"></select>
-    <select class="counter-select"></select>
-    <select class="counter-select"></select>
+function caricaMappe() {
+    const modalita = document.getElementById("modalita").value;
+    const selectMappa = document.getElementById("mappa");
+    selectMappa.innerHTML = "";
+    mappe[modalita].forEach(mappa => {
+        let option = document.createElement("option");
+        option.value = mappa;
+        option.textContent = mappa;
+        selectMappa.appendChild(option);
+    });
+}
 
-    <script src="script.js"></script>
-</body>
-</html>
+function popolaBrawler() {
+    const selects = document.querySelectorAll(".brawler-select");
+    selects.forEach(select => {
+        brawlers.forEach(brawler => {
+            let option = document.createElement("option");
+            option.value = brawler.nome;
+            option.textContent = `${brawler.nome} (${brawler.tipo}) - ${brawler.mid ? "Mid" : "Lane"}`;
+            select.appendChild(option);
+        });
+    });
+}
+
+function suggerisciCounter(index) {
+    const brawlerSelezionato = document.querySelectorAll(".brawler-select")[index].value;
+    const counterSelezionato = counter[brawlerSelezionato] || "Nessun dato";
+    document.querySelectorAll(".counter-select")[index].innerHTML = `<option>${counterSelezionato}</option>`;
+}
+
+window.onload = function() {
+    popolaBrawler();
+    caricaMappe();
+};
