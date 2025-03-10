@@ -26,11 +26,11 @@
 
     <h2>Squadra 1</h2>
     <label for="brawler1">Brawler 1:</label>
-    <select id="brawler1" class="brawler-select"></select>
+    <select id="brawler1" class="brawler-select" onchange="suggerisciCounter(1)"></select>
     <label for="brawler2">Brawler 2:</label>
-    <select id="brawler2" class="brawler-select"></select>
+    <select id="brawler2" class="brawler-select" onchange="suggerisciCounter(2)"></select>
     <label for="brawler3">Brawler 3:</label>
-    <select id="brawler3" class="brawler-select"></select>
+    <select id="brawler3" class="brawler-select" onchange="suggerisciCounter(3)"></select>
 
     <h2>Squadra 2 (Counter suggeriti)</h2>
     <p id="counter1">Counter 1: -</p>
@@ -42,42 +42,109 @@
             "8-Bit", "Amber", "Angelo", "Ash", "Barley", "Bea", "Belle", "Berry", "Bibi", "Bo", "Bonnie", "Brock", "Bull", "Buster", "Buzz", "Byron", "Carl", "Charlie", "Chester", "Chuck", "Clancy", "Colette", "Colt", "Cordelius", "Crow", "Darryl", "Doug", "Draco", "Dynamike", "Edgar", "El Primo", "Emz", "Eve", "Fang", "Finx", "Frank", "Gale", "Gene", "Gray", "Griff", "Grom", "Gus", "Hank", "Jacky", "Janet", "Jessie", "Juju", "Kenji", "Kit", "Larry & Lawrie", "Leon", "Lily", "Lola", "Lou", "Lumi", "Maisie", "Mandy", "Max", "Meeple", "Meg", "Melodie", "Mico", "Moe", "Mortis", "Mr. P", "Nani", "Nita", "Ollie", "Otis", "Pam", "Pearl", "Penny", "Piper", "Poco", "R-T", "Rico", "Rosa", "Ruffs", "Sam", "Sandy", "Shade", "Shelly", "Spike", "Sprout", "Squeak", "Stu", "Surge", "Tara", "Tick", "Willow"
         ];
 
-        const mappe = {
-            "KO": ["Mappa 1", "Mappa 2", "Mappa 3"],
-            "Rapina": ["Mappa 4", "Mappa 5", "Mappa 6"],
-            "Arraffagemme": ["Mappa 7", "Mappa 8", "Mappa 9"],
-            "Footbrawl": ["Mappa 10", "Mappa 11", "Mappa 12"],
-            "Hockeybrawl": ["Mappa 13", "Mappa 14", "Mappa 15"]
+        const counter = {
+            "8-Bit": "Max",
+            "Amber": "Rico",
+            "Angelo": "Crow",
+            "Ash": "Spike",
+            "Barley": "Mortis",
+            "Bea": "Bull",
+            "Belle": "Colt",
+            "Berry": "Bo",
+            "Bibi": "Edgar",
+            "Bo": "Colette",
+            "Bonnie": "Piper",
+            "Brock": "Leon",
+            "Bull": "Bea",
+            "Buster": "Otis",
+            "Buzz": "Max",
+            "Byron": "Mortis",
+            "Carl": "Shelly",
+            "Charlie": "Colt",
+            "Chester": "Gale",
+            "Chuck": "Poco",
+            "Clancy": "R-T",
+            "Colette": "Surge",
+            "Colt": "Bull",
+            "Cordelius": "Gene",
+            "Crow": "Leon",
+            "Darryl": "Piper",
+            "Doug": "Griff",
+            "Draco": "Sandy",
+            "Dynamike": "Shelly",
+            "Edgar": "Bo",
+            "El Primo": "Piper",
+            "Emz": "Dynamike",
+            "Eve": "Sprout",
+            "Fang": "Shelly",
+            "Finx": "Gene",
+            "Frank": "Belle",
+            "Gale": "Edgar",
+            "Gene": "Otis",
+            "Gray": "Max",
+            "Griff": "Bo",
+            "Grom": "Rico",
+            "Gus": "Mortis",
+            "Hank": "Piper",
+            "Jacky": "Belle",
+            "Janet": "Spike",
+            "Jessie": "Bull",
+            "Juju": "Brock",
+            "Kenji": "Colt",
+            "Kit": "Ruffs",
+            "Larry & Lawrie": "Grom",
+            "Leon": "Spike",
+            "Lily": "Mortis",
+            "Lola": "Shelly",
+            "Lou": "Edgar",
+            "Lumi": "Colette",
+            "Maisie": "Piper",
+            "Mandy": "Surge",
+            "Max": "Crow",
+            "Meeple": "Ruffs",
+            "Meg": "Mortis",
+            "Melodie": "Gene",
+            "Mico": "Piper",
+            "Moe": "Gale",
+            "Mortis": "Bull",
+            "Mr. P": "Leon",
+            "Nani": "Edgar",
+            "Nita": "Colette",
+            "Ollie": "Shelly",
+            "Otis": "Crow",
+            "Pam": "Spike",
+            "Pearl": "Gene",
+            "Penny": "Surge",
+            "Piper": "Max",
+            "Poco": "Bo",
+            "R-T": "Rico",
+            "Rico": "Edgar",
+            "Rosa": "Colt",
+            "Ruffs": "Brock",
+            "Sam": "Belle",
+            "Sandy": "Shelly",
+            "Shade": "Spike",
+            "Shelly": "Bull",
+            "Spike": "Mortis",
+            "Sprout": "Piper",
+            "Squeak": "Edgar",
+            "Stu": "Colette",
+            "Surge": "Leon",
+            "Tara": "Gale",
+            "Tick": "Shelly",
+            "Willow": "Mortis"
         };
 
-        function popolaSelect() {
-            let selectElements = document.querySelectorAll(".brawler-select");
-            selectElements.forEach(select => {
-                select.innerHTML = "<option value=''>-- Seleziona un Brawler --</option>";
-                brawlers.forEach(brawler => {
-                    let option = document.createElement("option");
-                    option.value = brawler;
-                    option.textContent = brawler;
-                    select.appendChild(option);
-                });
-            });
+        function suggerisciCounter(num) {
+            let brawlerSelezionato = document.getElementById(`brawler${num}`).value;
+            let counterBrawler = counter[brawlerSelezionato] || "-";
+            document.getElementById(`counter${num}`).textContent = `Counter ${num}: ${counterBrawler}`;
         }
 
-        function caricaMappe() {
-            let modalita = document.getElementById("modalita").value;
-            let mappaSelect = document.getElementById("mappa");
-            mappaSelect.innerHTML = "<option value=''>-- Seleziona una mappa --</option>";
-            if (mappe[modalita]) {
-                mappe[modalita].forEach(mappa => {
-                    let option = document.createElement("option");
-                    option.value = mappa;
-                    option.textContent = mappa;
-                    mappaSelect.appendChild(option);
-                });
-            }
-        }
-
-        document.addEventListener("DOMContentLoaded", popolaSelect);
+        document.addEventListener("DOMContentLoaded", function() {
+            popolaSelect();
+            caricaMappe();
+        });
     </script>
 </body>
 </html>
