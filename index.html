@@ -135,16 +135,26 @@
             "Willow": "Mortis"
         };
 
+        function popolaSelect() {
+            let selectElements = document.querySelectorAll(".brawler-select");
+            selectElements.forEach(select => {
+                select.innerHTML = "<option value=''>-- Seleziona un Brawler --</option>";
+                brawlers.forEach(brawler => {
+                    let option = document.createElement("option");
+                    option.value = brawler;
+                    option.textContent = brawler;
+                    select.appendChild(option);
+                });
+            });
+        }
+
         function suggerisciCounter(num) {
             let brawlerSelezionato = document.getElementById(`brawler${num}`).value;
             let counterBrawler = counter[brawlerSelezionato] || "-";
             document.getElementById(`counter${num}`).textContent = `Counter ${num}: ${counterBrawler}`;
         }
 
-        document.addEventListener("DOMContentLoaded", function() {
-            popolaSelect();
-            caricaMappe();
-        });
+        document.addEventListener("DOMContentLoaded", popolaSelect);
     </script>
 </body>
 </html>
