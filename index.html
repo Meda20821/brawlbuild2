@@ -3,21 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Il Mio Sito</title>
+    <title>Selezione Mappa - Brawl Stars</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            padding: 50px;
+            padding: 20px;
         }
-        h1 {
-            color: #3498db;
+        select, button {
+            font-size: 16px;
+            padding: 10px;
+            margin: 10px;
         }
     </style>
 </head>
 <body>
-    <h1>Benvenuto nel mio sito!</h1>
-    <p>Creato con GitHub Pages</p>
+
+    <h1>Seleziona una modalità</h1>
+    
+    <!-- Selettore della modalità -->
+    <label for="modalita">Modalità:</label>
+    <select id="modalita" onchange="aggiornaMappe()">
+        <option value="">-- Seleziona --</option>
+        <option value="ko">KO</option>
+        <option value="rapina">Rapina</option>
+        <option value="arraffagemme">Arraffagemme</option>
+        <option value="footbrawl">Footbrawl</option>
+        <option value="hockeybrawl">Hockeybrawl</option>
+    </select>
+
+    <h2>Seleziona una mappa</h2>
+
+    <!-- Selettore delle mappe -->
+    <label for="mappa">Mappa:</label>
+    <select id="mappa">
+        <option value="">-- Seleziona una modalità prima --</option>
+    </select>
+
+    <script>
+        // Dati delle mappe per ogni modalità
+        const mappePerModalita = {
+            ko: ["Zona Pericolosa", "Battaglia Finale", "Scontro Letale"],
+            rapina: ["Canyon Dorato", "Corsa all'Oro", "Sicurezza Massima"],
+            arraffagemme: ["Miniere Roventi", "Cascata Gemmata", "Montagne Gemmate"],
+            footbrawl: ["Stadio Verde", "Colosseo Rimbalzante", "Campetto Urbano"],
+            hockeybrawl: ["Arena Ghiacciata", "Slapshot", "Pista di Ghiaccio"]
+        };
+
+        // Funzione per aggiornare la lista delle mappe
+        function aggiornaMappe() {
+            let modalitaSelezionata = document.getElementById("modalita").value;
+            let mappaSelect = document.getElementById("mappa");
+            
+            // Pulisce le opzioni precedenti
+            mappaSelect.innerHTML = "";
+
+            if (modalitaSelezionata && mappePerModalita[modalitaSelezionata]) {
+                mappePerModalita[modalitaSelezionata].forEach(mappa => {
+                    let option = document.createElement("option");
+                    option.value = mappa;
+                    option.textContent = mappa;
+                    mappaSelect.appendChild(option);
+                });
+            } else {
+                let option = document.createElement("option");
+                option.textContent = "-- Seleziona una modalità prima --";
+                mappaSelect.appendChild(option);
+            }
+        }
+    </script>
+
 </body>
 </html>
-
