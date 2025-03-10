@@ -10,34 +10,36 @@ const brawlers = [
     { nome: "Bea", tipo: "Tiratore", mid: true },
     { nome: "Edgar", tipo: "Assassino", mid: false },
     { nome: "Nita", tipo: "Tank", mid: false },
-    { nome: "Jessie", tipo: "Supporto", mid: true },
-    { nome: "Penny", tipo: "Tiratore", mid: true },
-    { nome: "Frank", tipo: "Tank", mid: false },
-    { nome: "Gale", tipo: "Controllo", mid: true },
-    { nome: "Spike", tipo: "Tiratore", mid: true },
-    { nome: "Crow", tipo: "Assassino", mid: false },
-    { nome: "Leon", tipo: "Assassino", mid: false },
-    { nome: "Sandy", tipo: "Controllo", mid: true },
-    { nome: "Max", tipo: "Supporto", mid: true },
-    { nome: "Tara", tipo: "Controllo", mid: true },
     { nome: "Poco", tipo: "Supporto", mid: true },
-    { nome: "Barley", tipo: "Lanciatore", mid: false },
-    { nome: "Rico", tipo: "Tiratore", mid: true },
-    { nome: "Mortis", tipo: "Assassino", mid: false },
-    { nome: "Bibi", tipo: "Tank", mid: false },
-    { nome: "El Primo", tipo: "Tank", mid: false },
+    { nome: "Frank", tipo: "Tank", mid: false },
+    { nome: "Pam", tipo: "Supporto", mid: true },
+    { nome: "Carl", tipo: "Tiratore", mid: true },
     { nome: "Jacky", tipo: "Tank", mid: false },
-    { nome: "Darryl", tipo: "Tank", mid: false },
-    { nome: "Surge", tipo: "Tiratore", mid: true },
-    { nome: "Amber", tipo: "Tiratore", mid: true },
-    { nome: "Lou", tipo: "Controllo", mid: true },
-    { nome: "Stu", tipo: "Assassino", mid: false },
-    { nome: "Buzz", tipo: "Tank", mid: false },
-    { nome: "Griff", tipo: "Tiratore", mid: true },
+    { nome: "Tick", tipo: "Lanciatore", mid: false },
+    { nome: "Rico", tipo: "Tiratore", mid: true },
+    { nome: "Penny", tipo: "Tiratore", mid: true },
+    { nome: "Spike", tipo: "Lanciatore", mid: true },
+    { nome: "Gene", tipo: "Supporto", mid: true },
+    { nome: "Max", tipo: "Supporto", mid: true },
+    { nome: "Mr. P", tipo: "Supporto", mid: true },
+    { nome: "Stu", tipo: "Assassino", mid: true },
+    { nome: "Sprout", tipo: "Controllo", mid: true },
+    { nome: "Byron", tipo: "Supporto", mid: true },
+    { nome: "Sandy", tipo: "Supporto", mid: true },
     { nome: "Colette", tipo: "Tiratore", mid: true },
+    { nome: "Lou", tipo: "Supporto", mid: true },
+    { nome: "Amber", tipo: "Tiratore", mid: true },
+    { nome: "Gale", tipo: "Supporto", mid: true },
+    { nome: "Belle", tipo: "Tiratore", mid: true },
     { nome: "Ash", tipo: "Tank", mid: false },
-    { nome: "Grom", tipo: "Lanciatore", mid: false }
-    // Aggiungi il resto dei brawler (inserisci tutti i 89 brawler)
+    { nome: "Chester", tipo: "Assassino", mid: true },
+    { nome: "Grom", tipo: "Lanciatore", mid: true },
+    { nome: "Buzz", tipo: "Tank", mid: false },
+    { nome: "Eve", tipo: "Lanciatore", mid: true },
+    { nome: "Gray", tipo: "Assassino", mid: true },
+    { nome: "Fang", tipo: "Assassino", mid: true },
+    { nome: "Otis", tipo: "Supporto", mid: true },
+    { nome: "R-T", tipo: "Lanciatore", mid: true }
 ];
 
 const counter = {
@@ -51,35 +53,37 @@ const counter = {
     "Rosa": "Brock",
     "Bea": "Bull",
     "Edgar": "Bo",
-    "Nita": "Shelly",
-    "Jessie": "Brock",
-    "Penny": "Dynamike",
-    "Frank": "Edgar",
-    "Gale": "Leon",
-    "Spike": "Poco",
-    "Crow": "Bea",
-    "Leon": "Shelly",
-    "Sandy": "Mortis",
-    "Max": "Edgar",
-    "Tara": "Emz",
-    "Poco": "Bea",
-    "Barley": "Colt",
-    "Rico": "Bea",
-    "Mortis": "Bull",
-    "Bibi": "Colt",
-    "El Primo": "Brock",
-    "Jacky": "Dynamike",
-    "Darryl": "Shelly",
-    "Surge": "Edgar",
-    "Amber": "Penny",
-    "Lou": "Tara",
-    "Stu": "Dynamike",
-    "Buzz": "Rosa",
-    "Griff": "Edgar",
-    "Colette": "Brock",
-    "Ash": "Bull",
-    "Grom": "Bo",
-    // Aggiungi i counter per tutti i brawler rimanenti
+    "Nita": "Spike",
+    "Poco": "Edgar",
+    "Frank": "Max",
+    "Pam": "Colette",
+    "Carl": "Rico",
+    "Jacky": "Edgar",
+    "Tick": "Colt",
+    "Rico": "Nita",
+    "Penny": "Brock",
+    "Spike": "Shelly",
+    "Gene": "Max",
+    "Max": "Pam",
+    "Mr. P": "Bea",
+    "Stu": "Frank",
+    "Sprout": "Bo",
+    "Byron": "Emz",
+    "Sandy": "Tick",
+    "Colette": "Bull",
+    "Lou": "Brock",
+    "Amber": "Edgar",
+    "Gale": "Colt",
+    "Belle": "Bea",
+    "Ash": "Frank",
+    "Chester": "Edgar",
+    "Grom": "Dynamike",
+    "Buzz": "Edgar",
+    "Eve": "Gene",
+    "Gray": "Bo",
+    "Fang": "Brock",
+    "Otis": "Shelly",
+    "R-T": "Max"
 };
 
 const mappe = {
@@ -110,7 +114,6 @@ const mappe = {
     ]
 };
 
-// Funzione per caricare le mappe in base alla modalità
 function caricaMappe() {
     const modalita = document.getElementById("modalita").value;
     const selectMappa = document.getElementById("mappa");
@@ -123,7 +126,6 @@ function caricaMappe() {
     });
 }
 
-// Funzione per popolare la lista dei brawler
 function popolaBrawler() {
     const selects = document.querySelectorAll(".brawler-select");
     selects.forEach(select => {
@@ -136,22 +138,20 @@ function popolaBrawler() {
     });
 }
 
-// Funzione per suggerire il counter del brawler selezionato
 function suggerisciCounter(index) {
     const brawlerSelezionato = document.querySelectorAll(".brawler-select")[index].value;
-    const counterSelezionato = counter[brawlerSelezionato] || "Nessun dato"; // Se non c'è un counter, mostra "Nessun dato"
+    const counterSelezionato = counter[brawlerSelezionato] || "Nessun dato";
     
     const counterSelects = document.querySelectorAll(".counter-select");
-    counterSelects[index].innerHTML = ""; // Rimuove le opzioni precedenti
+    counterSelects[index].innerHTML = ""; 
 
     let option = document.createElement("option");
     option.value = counterSelezionato;
     option.textContent = counterSelezionato;
-    counterSelects[index].appendChild(option); // Aggiunge il counter suggerito
+    counterSelects[index].appendChild(option); 
 }
 
-// Inizializzazione della pagina
 window.onload = function() {
-    popolaBrawler(); // Popola i brawler nelle dropdown
-    caricaMappe(); // Carica le mappe iniziali
+    popolaBrawler(); 
+    caricaMappe(); 
 };
